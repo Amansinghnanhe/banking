@@ -251,6 +251,10 @@ CREATE TABLE collaterals (
 INSERT INTO collaterals (loan_application_id, item_type, estimated_value, owner_name, location, document_name_or_number)
 VALUES
 (2, 'Property', 4000000, 'Neha Sharma', 'Delhi', 'Property Deed #12345');
+SELECT * FROM customers;
+SELECT type_name, max_allowed_amount FROM loan_types;
+SELECT * FROM loan_applications
+WHERE approval_status = 'Approved';
 
 
 
