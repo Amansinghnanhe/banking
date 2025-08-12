@@ -56,11 +56,6 @@ WHERE address_type = 'Current';
 SELECT * FROM addresses
 WHERE state = 'Maharashtra';
 
-UPDATE addresses
-SET city = 'New Kolkata',
-    pincode = '700017'
-WHERE id = 3;
-
 CREATE TABLE kyc_documents (
     id INT PRIMARY KEY AUTO_INCREMENT,
     customer_id INT NOT NULL,
@@ -83,11 +78,6 @@ SELECT * FROM kyc_documents;
 SELECT * FROM kyc_documents
 WHERE expiry_date IS NOT NULL;
 
-UPDATE kyc_documents
-SET expiry_date = '2031-12-31',
-    file_path = 'uploads/kyc/1_aadhaar_updated.pdf';
-
-
 CREATE TABLE referral_sources (
     id INT PRIMARY KEY AUTO_INCREMENT,
     referral_type VARCHAR(50) NOT NULL,
@@ -107,10 +97,6 @@ SELECT * FROM referral_sources
 WHERE referral_type = 'Friend';
 SELECT id FROM referral_sources
 WHERE referral_type = 'Website';
-
-UPDATE referral_sources
-SET description = 'Referred by a close friend or family member'
-WHERE referral_type = 'Friend';
 
 CREATE TABLE onboarding_requests (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -138,11 +124,6 @@ SELECT * FROM onboarding_requests
 ORDER BY date_of_request DESC;
 SELECT * FROM onboarding_requests
 ORDER BY date_of_request ASC;
-
-UPDATE onboarding_requests
-SET preferred_branch_location = 'Delhi Connaught Place Branch',
-    notes_from_staff = 'Updated notes for customer.'
-WHERE id = 4;
 
 CREATE DATABASE management_system;
 use  management_system;
@@ -174,7 +155,6 @@ UPDATE customers
 SET mobile_number = '9123456780'
 WHERE id = 2;
 
-
 CREATE TABLE account_types (
     id INT PRIMARY KEY AUTO_INCREMENT,
     account_name VARCHAR(50) NOT NULL,
@@ -188,10 +168,6 @@ INSERT INTO account_types (account_name, description, minimum_balance) VALUES
 SELECT * FROM account_types;
 SELECT account_name, minimum_balance 
 FROM account_types;
-
-UPDATE account_types
-SET minimum_balance = 1500.00
-WHERE id = 1;
 
 CREATE TABLE branches (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -210,14 +186,6 @@ SELECT * FROM branches
 WHERE ifsc_code = 'MUMC0001234';
 SELECT * FROM branches
 WHERE city = 'Mumbai';
-
-UPDATE branches
-SET city = 'Thane', state = 'Maharashtra'
-WHERE id = 1;
-
-UPDATE branches
-SET city = 'Goa', state = 'Sonpur'
-WHERE id = 2;
 
 CREATE TABLE employees (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -240,10 +208,6 @@ SELECT * FROM employees
 WHERE designation = 'Branch Manager';
 SELECT * FROM employees
 WHERE designation = 'Relationship Manager';
-
-UPDATE employees
-SET designation = 'Senior Relationship Manager'
-WHERE email_address = 'rajesh.mehta@bank.com';
 
 CREATE TABLE accounts (
     account_number BIGINT PRIMARY KEY,
@@ -269,10 +233,6 @@ SELECT account_number, current_balance FROM accounts;
 SELECT * FROM accounts
 WHERE current_balance > 5000.00;
 
-UPDATE accounts
-SET current_balance = 6000.00
-WHERE account_number = 1000000001;
-
 CREATE DATABASE loanmanagement_system;
 use loanmanagement_system;
 
@@ -294,14 +254,6 @@ SELECT * FROM loan_types
 WHERE max_allowed_amount > 1000000;
 SELECT * FROM loan_types
 WHERE type_name = 'Home';
-
-UPDATE loan_types
-SET max_allowed_amount = 600000
-WHERE type_name = 'Personal';
-
-UPDATE loan_types
-SET description = 'Vehicle loan for cars, bikes, and other vehicles'
-WHERE type_name = 'Auto';
 
 CREATE TABLE loan_applications (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -332,6 +284,7 @@ WHERE approval_status = 'Approved';
 UPDATE loan_applications
 SET approval_status = 'Rejected'
 WHERE id = 2;
+
 
 CREATE TABLE loan_payments (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -378,6 +331,7 @@ WHERE location = 'Delhi';
 UPDATE collaterals
 SET estimated_value = 4200000, location = 'New Delhi'
 WHERE id = 1;
+
 
 
 
