@@ -31,8 +31,6 @@ SET mobile_number = '9876512345',
     email_address = 'aman.kumar.singh@newmail.com'
 WHERE id = 1;
 
-
-
 CREATE TABLE addresses (
     id INT PRIMARY KEY AUTO_INCREMENT,
     customer_id INT NOT NULL,
@@ -90,7 +88,6 @@ SET expiry_date = '2031-12-31',
     file_path = 'uploads/kyc/1_aadhaar_updated.pdf';
 
 
-
 CREATE TABLE referral_sources (
     id INT PRIMARY KEY AUTO_INCREMENT,
     referral_type VARCHAR(50) NOT NULL,
@@ -111,12 +108,9 @@ WHERE referral_type = 'Friend';
 SELECT id FROM referral_sources
 WHERE referral_type = 'Website';
 
-
 UPDATE referral_sources
 SET description = 'Referred by a close friend or family member'
 WHERE referral_type = 'Friend';
-
-
 
 CREATE TABLE onboarding_requests (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -199,7 +193,6 @@ UPDATE account_types
 SET minimum_balance = 1500.00
 WHERE id = 1;
 
-
 CREATE TABLE branches (
     id INT PRIMARY KEY AUTO_INCREMENT,
     branch_name VARCHAR(100) NOT NULL,
@@ -225,9 +218,6 @@ WHERE id = 1;
 UPDATE branches
 SET city = 'Goa', state = 'Sonpur'
 WHERE id = 2;
-
-
-
 
 CREATE TABLE employees (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -283,8 +273,6 @@ UPDATE accounts
 SET current_balance = 6000.00
 WHERE account_number = 1000000001;
 
-
-
 CREATE DATABASE loanmanagement_system;
 use loanmanagement_system;
 
@@ -314,8 +302,6 @@ WHERE type_name = 'Personal';
 UPDATE loan_types
 SET description = 'Vehicle loan for cars, bikes, and other vehicles'
 WHERE type_name = 'Auto';
-
-
 
 CREATE TABLE loan_applications (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -347,7 +333,6 @@ UPDATE loan_applications
 SET approval_status = 'Rejected'
 WHERE id = 2;
 
-
 CREATE TABLE loan_payments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     loan_application_id INT NOT NULL,
@@ -370,8 +355,6 @@ WHERE mode_of_payment = 'Online Transfer';
 UPDATE loan_payments
 SET amount_paid = 12000, mode_of_payment = 'Cheque'
 WHERE id = 2;
-
-
 
 CREATE TABLE collaterals (
     id INT AUTO_INCREMENT PRIMARY KEY,
