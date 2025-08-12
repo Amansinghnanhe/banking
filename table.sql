@@ -15,6 +15,24 @@ VALUES
 ('Ravi Patel', 'Male', '1988-12-05', '9988776655', 'ravi.patel@example.com'),
 ('Priya Gupta', 'Female', '1992-03-10', '9876501234', 'priya.gupta@example.com'),
 ('Alex Morgan', 'Other', '2000-07-25', '9001122334', 'alex.morgan@example.com');
+
+SELECT * FROM customers;
+SELECT full_name, email_address FROM customers;
+SELECT * FROM customers WHERE gender = 'Female';
+SELECT * FROM customers
+WHERE date_of_birth > '1990-01-01';
+SELECT * FROM customers
+WHERE mobile_number = '9876543210';
+SELECT * FROM customers
+WHERE gender IN ('Male', 'Female');
+
+UPDATE customers
+SET mobile_number = '9876512345',
+    email_address = 'aman.kumar.singh@newmail.com'
+WHERE id = 1;
+
+
+
 CREATE TABLE addresses (
     id INT PRIMARY KEY AUTO_INCREMENT,
     customer_id INT NOT NULL,
@@ -34,6 +52,16 @@ VALUES
 (3, '78C', 'Brigade Road', 'Bangalore', 'Karnataka', '560025', 'Current'),
 (4, '12D', 'Connaught Place', 'Delhi', 'Delhi', '110001', 'Permanent'),
 (5, '90E', 'Church Street', 'Bangalore', 'Karnataka', '560001', 'Current');
+SELECT * FROM addresses;
+SELECT * FROM addresses
+WHERE address_type = 'Current';
+SELECT * FROM addresses
+WHERE state = 'Maharashtra';
+
+UPDATE addresses
+SET city = 'New Kolkata',
+    pincode = '700017'
+WHERE id = 3;
 
 CREATE TABLE kyc_documents (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -53,6 +81,16 @@ VALUES
 (1, 'Driving License', 'DL-9876543210', 'RTO Mumbai', '2025-08-01', 'uploads/kyc/1_dl.pdf'),
 (4, 'Voter ID', 'XYZ1234567', 'Election Commission', NULL, 'uploads/kyc/4_voterid.pdf');
 
+SELECT * FROM kyc_documents;
+SELECT * FROM kyc_documents
+WHERE expiry_date IS NOT NULL;
+
+UPDATE kyc_documents
+SET expiry_date = '2031-12-31',
+    file_path = 'uploads/kyc/1_aadhaar_updated.pdf';
+
+
+
 CREATE TABLE referral_sources (
     id INT PRIMARY KEY AUTO_INCREMENT,
     referral_type VARCHAR(50) NOT NULL,
@@ -67,6 +105,18 @@ VALUES
 ('Television', 'Referred via TV commercials or programs'),
 ('Website', 'Came from the official company website'),
 ('Event', 'Referred at a company or community event');
+SELECT * FROM referral_sources;
+SELECT * FROM referral_sources
+WHERE referral_type = 'Friend';
+SELECT id FROM referral_sources
+WHERE referral_type = 'Website';
+
+
+UPDATE referral_sources
+SET description = 'Referred by a close friend or family member'
+WHERE referral_type = 'Friend';
+
+
 
 CREATE TABLE onboarding_requests (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -87,12 +137,20 @@ VALUES
     (3, '2025-08-05', 'Agent', 'Bangalore MG Road Branch', 'Agent explained all documents required.', 3),
     (4, '2025-08-06', 'Website', NULL, 'No special notes.', NULL),
     (5, '2025-08-07', 'Agent', 'Delhi Connaught Place Branch', 'Customer requested callback next week.', 5);
-    SELECT * FROM customers;
-    SELECT full_name, email_address FROM customers;
-    SELECT * FROM customers WHERE gender = 'Female';
+    SELECT * FROM onboarding_requests;
+    SELECT * FROM onboarding_requests
+WHERE source_of_request = 'Website';
+SELECT * FROM onboarding_requests
+ORDER BY date_of_request DESC;
+SELECT * FROM onboarding_requests
+ORDER BY date_of_request ASC;
 
+UPDATE onboarding_requests
+SET preferred_branch_location = 'Delhi Connaught Place Branch',
+    notes_from_staff = 'Updated notes for customer.'
+WHERE id = 4;
 
-    CREATE DATABASE management_system;
+CREATE DATABASE management_system;
 use  management_system;
 CREATE TABLE customers (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -106,6 +164,7 @@ INSERT INTO customers (full_name, gender, date_of_birth, mobile_number, email_ad
 ('Aman Kumar Singh', 'Male', '1995-05-15', '9876543210', 'aman.singh@example.com'),
 ('Neha Sharma', 'Female', '1990-08-22', '9123456780', 'neha.sharma@example.com'),
 ('Ravi Patel', 'Male', '1988-12-05', '9988776655', 'ravi.patel@example.com');
+
 SELECT * 
 FROM customers 
 WHERE gender = 'Female';
@@ -113,6 +172,13 @@ SELECT *
 FROM customers 
 WHERE date_of_birth < '1990-08-22';
 
+UPDATE customers
+SET mobile_number = '9876512345'
+WHERE id = 1;
+
+UPDATE customers
+SET mobile_number = '9123456780'
+WHERE id = 2;
 
 
 CREATE TABLE account_types (
@@ -124,9 +190,14 @@ CREATE TABLE account_types (
 INSERT INTO account_types (account_name, description, minimum_balance) VALUES
 ('Savings', 'Savings account with interest', 1000.00),
 ('Current', 'Current account for businesses', 5000.00);
+
 SELECT * FROM account_types;
 SELECT account_name, minimum_balance 
 FROM account_types;
+
+UPDATE account_types
+SET minimum_balance = 1500.00
+WHERE id = 1;
 
 
 CREATE TABLE branches (
@@ -140,6 +211,24 @@ INSERT INTO branches (branch_name, city, state, ifsc_code) VALUES
 ('Mumbai Central Branch', 'Mumbai', 'Maharashtra', 'MUMC0001234'),
 ('Kolkata Park Street Branch', 'Kolkata', 'West Bengal', 'KOLP0005678');
 
+SELECT * FROM branches;
+SELECT branch_name, ifsc_code FROM branches;
+SELECT * FROM branches
+WHERE ifsc_code = 'MUMC0001234';
+SELECT * FROM branches
+WHERE city = 'Mumbai';
+
+UPDATE branches
+SET city = 'Thane', state = 'Maharashtra'
+WHERE id = 1;
+
+UPDATE branches
+SET city = 'Goa', state = 'Sonpur'
+WHERE id = 2;
+
+
+
+
 CREATE TABLE employees (
     id INT PRIMARY KEY AUTO_INCREMENT,
     full_name VARCHAR(100) NOT NULL,
@@ -152,6 +241,19 @@ CREATE TABLE employees (
 INSERT INTO employees (full_name, designation, contact_number, email_address, branch_id) VALUES
 ('Rajesh Mehta', 'Relationship Manager', '9876543211', 'rajesh.mehta@bank.com', 1),
 ('Sunita Verma', 'Branch Manager', '9123456781', 'sunita.verma@bank.com', 2);
+
+SELECT * FROM employees;
+SELECT full_name, designation FROM employees;
+SELECT * FROM employees
+WHERE email_address = 'rajesh.mehta@bank.com';
+SELECT * FROM employees
+WHERE designation = 'Branch Manager';
+SELECT * FROM employees
+WHERE designation = 'Relationship Manager';
+
+UPDATE employees
+SET designation = 'Senior Relationship Manager'
+WHERE email_address = 'rajesh.mehta@bank.com';
 
 CREATE TABLE accounts (
     account_number BIGINT PRIMARY KEY,
@@ -171,26 +273,20 @@ INSERT INTO accounts (account_number, customer_id, account_type_id, branch_id, r
 (1000000001, 1, 1, 1, 1, '2025-01-15', 5000.00, 5500.00),
 (1000000002, 2, 2, 2, NULL, '2025-02-10', 10000.00, 12000.00),
 (1000000003, 3, 1, 1, 1, '2025-03-05', 2000.00, 2500.00);
-SELECT account_number, current_balance
-FROM accounts
-WHERE current_balance > 10000;
+
+SELECT * FROM accounts;
+SELECT account_number, current_balance FROM accounts;
+SELECT * FROM accounts
+WHERE current_balance > 5000.00;
+
+UPDATE accounts
+SET current_balance = 6000.00
+WHERE account_number = 1000000001;
+
+
 
 CREATE DATABASE loanmanagement_system;
 use loanmanagement_system;
-
-CREATE TABLE customers (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    full_name VARCHAR(100) NOT NULL,
-    gender ENUM('Male', 'Female', 'Other') NOT NULL,
-    date_of_birth DATE NOT NULL,
-    mobile_number VARCHAR(15) UNIQUE NOT NULL,
-    email_address VARCHAR(100) UNIQUE NOT NULL
-);
-INSERT INTO customers (full_name, gender, date_of_birth, mobile_number, email_address)
-VALUES 
-('Aman Kumar Singh', 'Male', '1990-05-15', '9876543210', 'aman@example.com'),
-('Neha Sharma', 'Female', '1988-11-23', '9876543211', 'neha@example.com');
-
 
 CREATE TABLE loan_types (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -203,6 +299,22 @@ VALUES
 ('Personal', 'Personal loan for any purpose', 500000),
 ('Auto', 'Loan for purchasing vehicles', 1500000),
 ('Home', 'Home loan for buying property', 5000000);
+
+SELECT * FROM loan_types;
+SELECT type_name, max_allowed_amount FROM loan_types;
+SELECT * FROM loan_types
+WHERE max_allowed_amount > 1000000;
+SELECT * FROM loan_types
+WHERE type_name = 'Home';
+
+UPDATE loan_types
+SET max_allowed_amount = 600000
+WHERE type_name = 'Personal';
+
+UPDATE loan_types
+SET description = 'Vehicle loan for cars, bikes, and other vehicles'
+WHERE type_name = 'Auto';
+
 
 
 CREATE TABLE loan_applications (
@@ -221,6 +333,19 @@ INSERT INTO loan_applications (customer_id, loan_type_id, loan_amount_requested,
 VALUES
 (1, 1, 200000, '2025-07-01', 'Approved', 24, 12.5),
 (2, 3, 3500000, '2025-07-05', 'Pending', 120, 8.5);
+SELECT * FROM loan_applications;
+SELECT 
+    id,
+    loan_amount_requested,
+    approval_status
+FROM 
+    loan_applications;
+    SELECT * FROM loan_applications
+WHERE approval_status = 'Approved';
+
+UPDATE loan_applications
+SET approval_status = 'Rejected'
+WHERE id = 2;
 
 
 CREATE TABLE loan_payments (
@@ -237,6 +362,16 @@ VALUES
 (1, '2025-08-01', 10000, 'Online Transfer', '2025-08-01'),
 (1, '2025-09-01', 10000, 'Cash', '2025-09-01');
 
+SELECT * FROM loan_payments;
+SELECT payment_date, amount_paid FROM loan_payments;
+SELECT * FROM loan_payments
+WHERE mode_of_payment = 'Online Transfer';
+
+UPDATE loan_payments
+SET amount_paid = 12000, mode_of_payment = 'Cheque'
+WHERE id = 2;
+
+
 
 CREATE TABLE collaterals (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -251,10 +386,39 @@ CREATE TABLE collaterals (
 INSERT INTO collaterals (loan_application_id, item_type, estimated_value, owner_name, location, document_name_or_number)
 VALUES
 (2, 'Property', 4000000, 'Neha Sharma', 'Delhi', 'Property Deed #12345');
-SELECT * FROM customers;
-SELECT type_name, max_allowed_amount FROM loan_types;
-SELECT * FROM loan_applications
-WHERE approval_status = 'Approved';
+
+SELECT * FROM collaterals;
+SELECT item_type, owner_name, estimated_value FROM collaterals;
+SELECT * FROM collaterals
+WHERE location = 'Delhi';
+
+UPDATE collaterals
+SET estimated_value = 4200000, location = 'New Delhi'
+WHERE id = 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+   
+
 
 
 
